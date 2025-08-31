@@ -7,12 +7,13 @@ const ProductRouter = require('./Routes/ProductRouter');
 const ExpenseRouter = require('./Routes/ExpenseRouter');
 const ensureAuthenticated = require('./Middlewares/Auth');
 
-require('dotenv').config();
+require("dotenv").config();
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
 
-
+app.use("/api/auth", require("./Routes/AuthRouter")); //newly added
 
 app.get("/", (req,res) => {
     res.send({
