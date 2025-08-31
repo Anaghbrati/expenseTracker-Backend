@@ -12,10 +12,11 @@ require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: "https://expense-tracker-frontend-xp4u-qcls6yase-anaghbratis-projects.vercel.app",
+    origin: ["http://localhost:3000", "https://expense-tracker-frontend-dkm9.vercel.app/login"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
+
 
 app.get("/", (req,res) => {
     res.send({
@@ -28,7 +29,8 @@ app.get('/ping', (req, res) => {
     res.send('PONG');
 });
 
-app.use(bodyParser.json());
+app.use(express.json());
+
 
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
