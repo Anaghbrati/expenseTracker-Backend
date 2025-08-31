@@ -11,6 +11,12 @@ require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
+app.use(cors({
+    origin: "https://expense-tracker-frontend-xp4u-qcls6yase-anaghbratis-projects.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
 app.get("/", (req,res) => {
     res.send({
         activeStatus: true,
@@ -23,7 +29,6 @@ app.get('/ping', (req, res) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
 
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
