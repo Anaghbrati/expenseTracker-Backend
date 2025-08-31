@@ -7,6 +7,8 @@ const ProductRouter = require('./Routes/ProductRouter');
 const ExpenseRouter = require('./Routes/ExpenseRouter');
 const ensureAuthenticated = require('./Middlewares/Auth');
 
+
+
 require("dotenv").config();
 console.log("JWT_SECRET:", process.env.JWT_SECRET);
 require('./Models/db');
