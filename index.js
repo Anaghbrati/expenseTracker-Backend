@@ -11,6 +11,13 @@ require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
+app.get("/", (req,res) => {
+    res.send({
+        activeStatus: true,
+        error: false
+    })
+})
+
 app.get('/ping', (req, res) => {
     res.send('PONG');
 });
