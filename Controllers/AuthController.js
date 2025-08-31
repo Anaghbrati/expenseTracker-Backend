@@ -25,6 +25,7 @@ const signup = async (req, res) => {
                 message: "Internal server errror",
                 success: false
             })
+            console.log(err);
     }
 }
 
