@@ -12,10 +12,16 @@ require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: ["http://localhost:3000", "https://expense-tracker-frontend-dkm9.vercel.app/login"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: [
+        "http://localhost:3000",                  
+        "https://expense-tracker-frontend-dkm9.vercel.app/login"        
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
+
+app.options("*", cors());
 
 
 app.get("/", (req,res) => {
@@ -36,7 +42,6 @@ app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 app.use('/expenses',ensureAuthenticated, ExpenseRouter);
 
-app.options("*", cors());
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
