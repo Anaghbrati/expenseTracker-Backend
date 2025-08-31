@@ -36,6 +36,7 @@ app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 app.use('/expenses',ensureAuthenticated, ExpenseRouter);
 
+app.options("*", cors());
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
