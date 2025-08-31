@@ -11,17 +11,7 @@ require('dotenv').config();
 require('./Models/db');
 const PORT = process.env.PORT || 8080;
 
-app.use(cors({
-    origin: [
-        "http://localhost:3000",                  
-        "https://expense-tracker-frontend-dkm9.vercel.app/login"        
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
-}));
 
-app.options("*", cors());
 
 
 app.get("/", (req,res) => {
@@ -35,8 +25,8 @@ app.get('/ping', (req, res) => {
     res.send('PONG');
 });
 
-app.use(express.json());
-
+app.use(bodyParser.json());
+app.use(cors());
 
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
