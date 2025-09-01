@@ -17,6 +17,17 @@ const PORT = process.env.PORT || 8080;
 
 app.use("/api/auth", require("./Routes/AuthRouter")); //newly added
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000", // for local dev
+      "https://expense-tracker-frontend-dkm9.vercel.app" // for production frontend
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.get("/", (req,res) => {
     res.send({
         activeStatus: true,
@@ -29,7 +40,7 @@ app.get('/ping', (req, res) => {
 });
 
 app.use(bodyParser.json());
-app.use(cors());
+//app.use(cors()); add this
 
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
