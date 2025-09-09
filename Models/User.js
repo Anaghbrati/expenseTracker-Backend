@@ -25,6 +25,11 @@ const UserSchema = new Schema({
                 type: Number,
                 required: true
             },
+            category: {
+                type: String,   
+                required: true,
+                default: "Miscellaneous"
+            },
             createdAt: {
                 type: Date,
                 default: Date.now
